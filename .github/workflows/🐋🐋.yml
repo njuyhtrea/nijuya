@@ -1,0 +1,32 @@
+name: ▫️
+on:  
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  build:
+    name: 🐋
+    runs-on: ubuntu-18.04
+    strategy:
+      max-parallel: 40
+      fail-fast: false
+      matrix: 
+        go: [1.12, 1.15, 1.16, 1.17]
+        flag: [A, B, C, D, E, F, G, H, I, J]
+    timeout-minutes: 340
+    env:
+        NUM_JOBS: 40
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: 🐋
+      uses: actions/checkout@v1
+    - name: 🐋🐋
+      run: echo hei
+    - name: Start
+      continue-on-error: true
+      run: echo hello
